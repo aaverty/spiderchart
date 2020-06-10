@@ -5,11 +5,13 @@ class SpiderChartValue {
   /// [O..1] percentage of line
   List<double> values;
   Color bgColor, strokeColor;
+  double strokeWidth;
   final Gradient gradient;
   SpiderChartValue(
     this.values, {
     this.bgColor,
     this.strokeColor,
+    this.strokeWidth,
     this.gradient,
   });
 }
@@ -82,7 +84,7 @@ class SpiderChartDrawer extends CustomPainter {
     List<Offset> points = List();
     var activeStrokePainter = Paint()
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 8
+      ..strokeWidth = model?.strokeWidth ?? 6
       ..color = model?.strokeColor ?? activeBgColor
       ..isAntiAlias = true;
     var path = Path();
