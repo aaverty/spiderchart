@@ -40,7 +40,7 @@ class SpiderChartLabelDrawer extends CustomPainter {
       this.positionListener(labelCenter);
     }
     if (label != null) {
-      var labelPainterCenter = center.rotate(paneSize + 4, nbSides, sideIndex);
+      var labelPainterCenter = center.rotate(paneSize + 16, nbSides, sideIndex);
       var textSpan = TextSpan(
         text: label.data,
         style: label.style ?? TextStyle(color: Colors.black),
@@ -51,10 +51,10 @@ class SpiderChartLabelDrawer extends CustomPainter {
         textAlign: label.textAlign ?? TextAlign.center,
       );
       textPainter.layout();
-      if (sin(sideIndex * 2 * pi / nbSides) > 0) {
-        textPainter.paint(canvas, Offset(labelPainterCenter.dx - textPainter.width / 2, labelPainterCenter.dy + 16));
+      if (sin(sideIndex * 2 * pi / nbSides) >= 0) {
+        textPainter.paint(canvas, Offset(labelPainterCenter.dx - textPainter.width / 2, labelPainterCenter.dy - 8));
       } else {
-        textPainter.paint(canvas, Offset(labelPainterCenter.dx - textPainter.width / 2, labelPainterCenter.dy - 32));
+        textPainter.paint(canvas, Offset(labelPainterCenter.dx - textPainter.width / 2, labelPainterCenter.dy - 16));
       }
     }
   }
